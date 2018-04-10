@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+type Skills []string
+
 type Human struct {
 	name string
 	age int
@@ -10,26 +12,24 @@ type Human struct {
 
 type Student struct {
 	Human
+	Skills
+	int
 	speciality string
 }
 
 func main() {
-	mark:=Student{Human{"Mark",18,80},"Computer Science"}
-	//访问相应的字段
-	fmt.Println("His name is ",mark.name)
-	fmt.Println("His age is ",mark.age)
-	fmt.Println("His weight is ",mark.weight)
-	fmt.Println("His speciality is ",mark.speciality)
-	//修改对应备注信息
-	mark.speciality="AI"
-	fmt.Println("Mark changed his speciality")
-	fmt.Println("His speciality is ",mark.speciality)
-	//修改年龄信息
-	fmt.Println("Mark become old")
-	mark.age=22
-	fmt.Println("His age is ",mark.age)
-	//修改体重信息
-	fmt.Println("Mark is not an athlet anymore")
-	mark.weight+=60
-	fmt.Println("His weight is ",mark.weight)
+	jane:=Student{Human:Human{"Jane",35,100},speciality:"Biology"}
+	fmt.Println("Her name is ",jane.name)
+	fmt.Println("Her age is ",jane.age)
+	fmt.Println("Her weight is ",jane.weight)
+	fmt.Println("Her speciality is ",jane.speciality)
+	//修改Skill技能字段
+	jane.Skills = []string{"anatomy"}
+	fmt.Println("Her skills are ",jane.Skills)
+	fmt.Println("She acquired two new ones")
+	jane.Skills = append(jane.Skills,"physics","golang")
+	fmt.Println("Her skills now are ",jane.Skills)
+	//修改匿名内置类型字段
+	jane.int = 3
+	fmt.Println("Her preferred number is ",jane.int)
 }
