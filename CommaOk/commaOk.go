@@ -25,14 +25,15 @@ func main() {
 	list[2] = Person{"Dennis", 70}
 
 	for index, element := range list {
-		if value, ok := element.(int); ok {
+		switch value := element.(type) {
+		case int:
 			fmt.Printf("list[%d] is an int and its value is %d\n", index, value)
-		} else if value, ok := element.(string); ok {
-			fmt.Printf("list[%d] is a string and its value is %s\n",index,value)
-		}else if value,ok:=element.(Person);ok {
-			fmt.Printf("list[%d] is a Person and its value is %s\n",index,value)
-		}else {
-			fmt.Printf("list[%d] is of a different type\n",index)
+		case string:
+			fmt.Printf("list[%d] is an int and its value is %s\n", index, value)
+		case Person:
+			fmt.Printf("list[%d] is an int and its value is %s\n", index, value)
+		default:
+			fmt.Println("list[%d] is a different type", index)
 		}
 	}
 }
