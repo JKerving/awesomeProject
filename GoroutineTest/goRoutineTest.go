@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+var chanCap int = 5
 var ch1 chan int = make(chan int,1)
 var ch2 chan int = make(chan int,1)
 var chs = []chan int{ch1, ch2}
@@ -16,6 +17,8 @@ func main() {
 	default:
 		fmt.Println("default")
 	}
+
+	caseTest()
 }
 
 func getNumber(i int) int {
@@ -26,4 +29,19 @@ func getNumber(i int) int {
 func getChan(i int) chan int {
 	fmt.Printf("chs[%d]\n",i)
 	return chs[i]
+}
+
+func caseTest()  {
+	ch := make(chan int,chanCap)
+	for i:=0;i<chanCap;i++{
+		select {
+		case ch<-1:
+		case ch<-2:
+		case ch<-3:
+		}
+	}
+	for i:=0;i<chanCap;i++{
+		fmt.Printf("%v\n",<-ch)
+	}
+	close(ch)
 }
