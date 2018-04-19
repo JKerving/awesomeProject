@@ -40,6 +40,7 @@ func caseTest()  {
 		case ch<-3:
 		}
 	}
+
 	for i:=0;i<chanCap;i++{
 		fmt.Printf("%v\n",<-ch)
 	}
